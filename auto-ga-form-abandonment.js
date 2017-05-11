@@ -6,8 +6,9 @@
       findUnsubmittedForms().forEach(function(it) {
         window.dataLayer.push({
           'event' : 'formAbandonment',
-          'eventCategory' : 'Form Abandonment',
-          'eventAction' : it.name + ": " + it.history.join(" > ")
+          'eventCategory' : 'form',
+          'eventAction' : it.name + ' abandoned',
+          'eventLabel' : it.history.join(" > ")
         })
       })
     })
@@ -21,7 +22,7 @@
           var inputName = target.getAttribute("name")
           var form = target.form
           if (form && inputName) {
-            var formName = form.getAttribute("name")
+            var formName = form.getAttribute("data-name")
             if (typeof history[formName] == "undefined") {
               history[formName] = []
             }
